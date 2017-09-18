@@ -1,0 +1,67 @@
+1.  search_users(query, **kwargs)
+
+    Parameters:
+    query – Search string
+
+    说明：搜索符合条件的用户，目前我们的只需要  api.search_users('getinsta.app') 如此使用即可，传入需要的爬取用户名称
+
+2.  post_comment(media_id, comment_text)
+
+    Parameters:
+    media_id – Media id
+    comment_text – Comment text
+
+    说明：对帖子发表评论
+
+3.  user_feed(user_id, **kwargs)
+
+    Parameters:
+    user_id –
+
+    说明：获取该用户下的feed流帖子内容
+    例子：
+            user_feed = api.user_feed(pk)
+            # next_max_id这个的应该显示在界面上最后一个帖子的下一个帖子id，
+            # 即如果有这个ID，则证明有更多帖子，相当于点击了网页中的更多按钮
+            next_max_id = user_feed.get('next_max_id')
+            while next_max_id:
+            user_feed = api.user_feed(pk, max_id=next_max_id)
+            next_max_id = user_feed.get('next_max_id')
+
+     返回值说明：items是所有帖子，ranked_items是热门帖子，story还没搞懂
+
+4.  post_like(*args, **kwargs)
+    Parameters:	media_id – Media id
+
+    说明：对某个帖子表示like
+
+5.  friendships_create(user_id)
+    关注某个用户
+
+6.  friendships_destroy(user_id, **kwargs)
+    对某个用户取消关注
+
+7.  tag_info(tag)
+    通过这个能拿到此tag帖子总数
+
+8.  remove_follower(user_id)
+    Remove a follower
+    移除掉一个关注我的人
+
+9.  friendships_destroy(user_id, **kwargs)
+    Unfollow a user
+    取消关注
+
+    Parameters:
+    user_id – User id
+    kwargs –
+
+10.  api.reels_tray()
+    获取你关注用户当前正在的直播和story
+    返回值：    broadcasts是当前的直播
+                tray是story
+                post_live_items 不知道什么意思
+
+11.  suggested_broadcasts()
+     discover_top_live()
+     获取当前最火的直播，具体区别是什么还没搞清楚
